@@ -3,8 +3,8 @@
   "version": "1.0.0",
   
   "scripts": {
-    "build": "node ./index.js",
-    "dev": "nodemon ./index.js --ignore public/",
+    "build": "nodemon index.js",
+    "dev": "nodemon index.js --ignore public/",
     "production": "NODE_ENV=production",
     "setup": "node ./setup/setup.js",
     "reset": "node ./setup/reset.js",
