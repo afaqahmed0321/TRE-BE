@@ -1,14 +1,14 @@
 {
   "name": "cedimed-react",
   "version": "1.0.0",
-  
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js --ignore public/",
     "production": "NODE_ENV=production",
     "setup": "node ./setup/setup.js",
     "reset": "node ./setup/reset.js",
-    "roles": "node ./setup/addRoles.js"
+    "roles": "node ./setup/addRoles.js",
+    "build": "echo 'No build step required for backend'"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
