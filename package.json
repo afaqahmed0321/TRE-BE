@@ -3,7 +3,7 @@
   "version": "1.0.0",
   
   "scripts": {
-    "build": "nodemon index.js",
+    "start": "node index.js",
     "dev": "nodemon index.js --ignore public/",
     "production": "NODE_ENV=production",
     "setup": "node ./setup/setup.js",

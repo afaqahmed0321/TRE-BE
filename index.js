@@ -1,31 +1,43 @@
 require('module-alias/register');
 const mongoose = require('mongoose');
-const dotenv = require('dotenv');
 
-// Load environment variables from .env file
-dotenv.config({ path: '.variables.env' });
-
-// Check if the Node.js version is compatible
+// Make sure we are running node 7.6+
 const [major, minor] = process.versions.node.split('.').map(parseFloat);
 if (major < 14 || (major === 14 && minor <= 0)) {
-  console.log('Please use Node.js version 14 or later.');
-  process.exit(1);
+  console.log('Please go to nodejs.org and download version 8 or greater. 👌\n ');
+  process.exit();
 }
 
-// Connect to MongoDB Atlas cluster
-mongoose.connect(process.env.MONGODB_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-})
-.then(() => {
-  console.log('Connected to MongoDB Atlas successfully');
-})
-.catch((err) => {
-  console.error('Error connecting to MongoDB Atlas:', err);
-  process.exit(1);
-});
+// import environmental variables from our variables.env file
+require('dotenv').config({ path: '.variables.env' });
 
-// Load all models
+// Connect to our Database and handle any bad connections
+// mongoose.connect(process.env.DATABASE);
+
+mongoose
+  // .connect(
+  //   "mongodb+srv://RFA:RFA@cluster0.jougdkj.mongodb.net/PropetyProjectDb?retryWrites=true&w=majority",
+  //   {
+  //     useNewUrlParser: true,
+  //     useUnifiedTopology: true,
+  //   }
+  // )
+  .connect(
+    "mongodb+srv://lkbproduction1:%40LkbMongoDB32@cluster0.cq8ex5l.mongodb.net/?authMechanism=DEFAULT",
+    {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    }
+  )
+  .then(() => {
+    console.log(`Connected To Online Db Successfully...... `);
+  })
+  .catch((err) => {
+    console.log(err)
+    console.log(`Connection failed`.inverse);
+  });
+
+
 const glob = require('glob');
 const path = require('path');
 
@@ -33,9 +45,9 @@ glob.sync('./models/**/*.js').forEach(function (file) {
   require(path.resolve(file));
 });
 
-// Start the Express app
+// Start our app!
 const app = require('./app');
-const port = process.env.PORT || 8888;
-app.listen(port, () => {
-  console.log(`Express server is running on port ${port}`);
+app.set('port', process.env.PORT || 8888);
+const server = app.listen(app.get('port'), () => {
+  console.log(`Express running → On  : http://localhost:${server.address().port}`);
 });
