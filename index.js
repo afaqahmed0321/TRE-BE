@@ -23,7 +23,7 @@ mongoose
   //   }
   // )
   .connect(
-    "mongodb+srv://lkbproduction1:%40LkbMongoDB32@cluster0.cq8ex5l.mongodb.net/?authMechanism=DEFAULT",
+    process.env.MONGODB_URI,
     {
       useNewUrlParser: true,
       useUnifiedTopology: true,
@@ -37,7 +37,6 @@ mongoose
     console.log(`Connection failed`.inverse);
   });
 
-
 const glob = require('glob');
 const path = require('path');
 
@@ -47,7 +46,7 @@ glob.sync('./models/**/*.js').forEach(function (file) {
 
 // Start our app!
 const app = require('./app');
-app.set('port', process.env.PORT || 8888);
+app.set('port', process.env.PORT );
 const server = app.listen(app.get('port'), () => {
   console.log(`Express running → On  : http://localhost:${server.address().port}`);
 });
