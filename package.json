@@ -3,13 +3,12 @@
   "version": "1.0.0",
   
   "scripts": {
-    "start": "nodemon index.js",
+    "build": "nodemon index.js",
     "dev": "nodemon index.js --ignore public/",
     "production": "NODE_ENV=production",
     "setup": "node ./setup/setup.js",
     "reset": "node ./setup/reset.js",
-    "roles": "node ./setup/addRoles.js",
-    "build": "ncc build index.js -o dist"
+    "roles": "node ./setup/addRoles.js"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
