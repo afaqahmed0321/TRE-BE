@@ -31,6 +31,8 @@ mongoose
   )
   .then(() => {
     console.log(`Connected To Online Db Successfully...... `);
+    console.log(`Connected To Online Db Successfully...... `);
+
   })
   .catch((err) => {
     console.log(err)
